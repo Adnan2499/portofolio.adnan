@@ -49,3 +49,77 @@
   font-size: 22px; 
   transform: rotate(180deg) scale(0.9); 
 } 
+/* Love Pop Animation */
+@keyframes love-pop {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.love-animate {
+  animation: love-pop 0.4s ease-in-out;
+}
+
+/* Love burst effect */
+.love-burst {
+  position: absolute;
+  font-size: 14px;
+  animation: burst 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(1.5);
+  }
+}
+
+.social-btn {
+  @apply w-11 h-11 rounded-full flex items-center justify-center
+         border border-slate-300 text-slate-400
+         hover:border-sky-400 hover:bg-sky-400 hover:text-white
+         transition duration-300;
+}
+
+.social-btn i {
+  @apply w-5 h-5;
+}
+
+.social-btn:hover i {
+  transform: scale(1.15);
+}
+
+.social-btn:active {
+  transform: scale(0.9);
+}
+
+.client-slider {
+  animation: slide 30s linear infinite;
+}
+
+.client-item {
+  @apply flex items-center justify-center min-w-[260px] p-8 rounded-2xl bg-white/5 backdrop-blur-md;
+}
+
+.client-item img {
+  @apply h-16 lg:h-20 grayscale opacity-70 transition duration-500;
+}
+
+.client-item:hover img {
+  @apply grayscale-0 opacity-100 scale-110;
+}
+
