@@ -112,3 +112,50 @@ setTimeout(() => {
 preloader.style.display = "none"; 
 }, 500); 
 }); 
+/* =============================
+     LOVE CONFETTI
+  ============================= */
+  const loveBtn = document.getElementById("loveBtn");
+
+  if (loveBtn) {
+    loveBtn.addEventListener("click", () => {
+      const rect = loveBtn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+
+      for (let i = 0; i < 10; i++) createConfetti(x, y);
+
+      loveBtn.classList.add("scale-125");
+      setTimeout(() => loveBtn.classList.remove("scale-125"), 150);
+    });
+  }
+
+  function createConfetti(x, y) {
+    const confetti = document.createElement("span");
+    const icons = ["💙", "✨", "⭐", "🎉", "😍"];
+    confetti.textContent = icons[Math.floor(Math.random() * icons.length)];
+    confetti.style.position = "fixed";
+    confetti.style.left = `${x}px`;
+    confetti.style.top = `${y}px`;
+    confetti.style.pointerEvents = "none";
+    confetti.style.zIndex = "9999";
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = Math.random() * 80 + 40;
+
+    confetti.animate(
+      [
+        { transform: "translate(0,0)", opacity: 1 },
+        {
+          transform: `translate(${Math.cos(angle) * distance}px, ${
+            Math.sin(angle) * distance
+          }px)`,
+          opacity: 0,
+        },
+      ],
+      { duration: 900, easing: "ease-out" }
+    );
+
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 900);
+  }
